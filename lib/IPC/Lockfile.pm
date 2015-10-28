@@ -24,10 +24,14 @@ Just import the module:
 This will create a lockfile in the same directory as the program. To avoid
 race conditions, the file will not be deleted when the program ends.
 
-Or do not use this module and just add these two lines to your program:
+Or do not use this module and just add these lines to your program:
 
   use Fcntl qw(:flock);
   flock DATA, LOCK_EX|LOCK_NB or die "$0 is running!\n";;
+
+  ... # program code goes here
+
+  __DATA__
 
 No external lockfile is created as it uses C<_DATA_>. An elegant L<solution|http://perl.plover.com/yak/flock/samples/slide006.html>
 for lockfiles proposed by Mark Jason Dominus.
