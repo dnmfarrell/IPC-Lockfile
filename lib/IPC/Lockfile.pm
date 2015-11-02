@@ -6,8 +6,8 @@ package IPC::Lockfile;
 use Fcntl qw(:flock);
 
 # lexical filehandles dont work!
-open LOCKFILE, '<', $0  or die "Unable to create the lockfile $0 $!\n";
-flock LOCKFILE, LOCK_EX|LOCK_NB or die "$0 is running!\n";
+open our $LOCKFILE, '<', $0  or die "Unable to create the lockfile $0 $!\n";
+flock $LOCKFILE, LOCK_EX|LOCK_NB or die "$0 is running!\n";
 
 =head1 SYNOPSIS
 
